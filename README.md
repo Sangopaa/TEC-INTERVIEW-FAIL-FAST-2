@@ -4,7 +4,6 @@ A full-stack web application with React frontend and Django backend.
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
 - [Tech Stack](#tech-stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -12,13 +11,6 @@ A full-stack web application with React frontend and Django backend.
 - [Project Structure](#project-structure)
 - [API Documentation](#api-documentation)
 - [Environment Variables](#environment-variables)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-
-## 🚀 Overview
-
-Brief description of your application and its main features.
 
 ## 🛠️ Tech Stack
 
