@@ -1,46 +1,238 @@
-# Getting Started with Create React App
+# Full Stack Application - React + Django
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application with React frontend and Django backend.
 
-## Available Scripts
+## 📋 Table of Contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Development](#development)
+- [Project Structure](#project-structure)
+- [API Documentation](#api-documentation)
+- [Environment Variables](#environment-variables)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
 
-### `npm start`
+## 🚀 Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Brief description of your application and its main features.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+**Frontend:**
+- React 18+
+- JavaScript/TypeScript
+- Tailwind CSS
+- Axios for API calls
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Backend:**
+- Django 4+
+- Django REST Framework
+- Python 3.8+
+- SQLite/PostgreSQL
 
-### `npm run build`
+## 📋 Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Before running this project, make sure you have:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js (v16 or higher)
+- Python (v3.8 or higher)
+- pip (Python package installer)
+- Git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔧 Installation
 
-### `npm run eject`
+### 1. Clone the Repository
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone <repository-url>
+cd "PRUEBA TECNICA 2"
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Backend Setup (Django)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Navigate to backend directory
+cd backend
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Create virtual environment
+python -m venv venv
 
-## Learn More
+# Activate virtual environment
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Install dependencies
+pip install -r requirements.txt
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Run migrations
+python manage.py migrate
+
+# Create base data (run custom management command)
+python manage.py create_base_data
+
+# Create superuser (optional)
+python manage.py createsuperuser
+
+# Collect static files (if needed)
+python manage.py collectstatic
+```
+
+### 3. Frontend Setup (React)
+
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+# or
+yarn install
+```
+
+## 🏃‍♂️ Development
+
+### Starting the Backend Server
+
+```bash
+cd backend
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
+python manage.py runserver
+```
+
+The Django server will start at `http://localhost:8000`
+
+### Starting the Frontend Server
+
+```bash
+cd frontend
+npm start
+# or
+yarn start
+```
+
+The React app will start at `http://localhost:3000`
+
+### Development URLs
+
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8000/api/
+- **Django Admin:** http://localhost:8000/admin/
+
+## 📁 Project Structure
+
+```
+PRUEBA TECNICA 2/
+├── backend/                 # Django application
+│   ├── .env                # Environment variables
+│   ├── manage.py           # Django management script
+│   ├── requirements.txt    # Python dependencies
+│   ├── forms/              # Django app for forms
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   ├── views.py
+│   │   ├── management/     # Custom management commands
+│   │   │   └── commands/
+│   │   │       └── create_base_data.py
+│   │   ├── migrations/     # Database migrations
+│   │   │   ├── __init__.py
+│   │   │   └── 0001_initial.py
+│   │   ├── serializers/    # DRF serializers
+│   │   │   ├── __init__.py
+│   │   │   ├── form.py
+│   │   │   ├── person.py
+│   │   │   └── rule.py
+│   │   └── services/       # Business logic services
+│   │       ├── __init__.py
+│   │       ├── person.py
+│   │       └── rules.py
+│   └── tec_interview/      # Main Django project
+│       ├── __init__.py
+│       ├── asgi.py
+│       ├── settings.py
+│       ├── urls.py
+│       └── wsgi.py
+├── frontend/               # React + TypeScript application
+│   ├── .env                # Environment variables
+│   ├── .gitignore
+│   ├── package.json
+│   ├── postcss.config.js   # PostCSS configuration
+│   ├── README.md
+│   ├── tailwind.config.js  # Tailwind CSS configuration
+│   ├── tsconfig.json       # TypeScript configuration
+│   ├── public/             # Static assets
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   └── src/                # Source code
+│       ├── App.css
+│       ├── App.test.tsx
+│       ├── App.tsx         # Main App component
+│       ├── index.css
+│       ├── index.tsx       # Entry point
+│       ├── logo.svg
+│       ├── react-app-env.d.ts
+│       ├── reportWebVitals.ts
+│       ├── setupTests.ts
+│       ├── components/     # React components
+│       │   ├── DynamicField.tsx
+│       │   └── PersonForm.tsx
+│       ├── hooks/          # Custom React hooks
+│       │   └── useRuleEngine.ts
+│       ├── services/       # API services
+│       │   └── request.ts
+│       └── types/          # TypeScript type definitions
+│           ├── personData.ts
+│           └── rule.ts
+├── .gitignore
+└── README.md
+```
+
+## 🔌 API Documentation
+
+### Base URL
+- Development: `http://localhost:8000/api/`
+
+### Main Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | `/api/` | API root |
+| GET    | `/api/forms/rules/<form_id>/` | Get validation rules for a specific form |
+| POST   | `/api/forms/person/` | Submit person form data |
+
+## 🌍 Environment Variables
+
+### Backend (.env)
+
+Create a `.env` file in the backend directory:
+
+```env
+SECRET_KEY=your-secret-key
+DEBUG=True
+DATABASE_URL=sqlite:///db.sqlite3
+ALLOWED_HOSTS=localhost,127.0.0.1
+CORS_ALLOWED_ORIGINS=http://localhost:3000
+```
+
+### Frontend (.env)
+
+Create a `.env` file in the frontend directory:
+
+```env
+REACT_APP_API_URL=http://localhost:8000/api
+REACT_APP_DEBUG=true
+```
